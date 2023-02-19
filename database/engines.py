@@ -10,5 +10,5 @@ class Engines(Base):
     power = Column(INTEGER(unsigned=True), nullable=False)
     type = Column(INTEGER(unsigned=True), nullable=False)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.engine}, power='{self.power}', type='{self.type}'"

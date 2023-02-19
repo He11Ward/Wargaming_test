@@ -13,6 +13,8 @@ class Weapons(Base):
     power_volley = Column(INTEGER(unsigned=True), nullable=False)
     count = Column(INTEGER(unsigned=True), nullable=False)
 
-    def __repr__(self):
-        return f"{self.weapon}, reload_speed='{self.reload_speed}', rotational_speed='{self.rotational_speed}," \
-               f" diameter='{self.diameter}', power_volley='{self.power_volley}', count='{self.count}'"
+    def __repr__(self) -> str:
+        return f"{self.weapon}, reload_speed='{self.reload_speed}'," \
+               f" rotational_speed='{self.rotational_speed}," \
+               f" diameter='{self.diameter}'" \
+               f", power_volley='{self.power_volley}', count='{self.count}'"

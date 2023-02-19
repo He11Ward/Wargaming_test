@@ -14,5 +14,6 @@ class Ships(Base):
     hulls = relationship("Hulls", backref="Ships")
     engines = relationship("Engines", backref="Ships")
 
-    def __repr__(self):
-        return f"{self.ship}, weapon='{self.weapon}', hull='{self.hull}', engine='{self.engine}'"
+    def __repr__(self) -> str:
+        return f"{self.ship}, weapon='{self.weapon}', hull='{self.hull}'," \
+               f" engine='{self.engine}'"

@@ -11,5 +11,6 @@ class Hulls(Base):
     type = Column(INTEGER(unsigned=True), nullable=False)
     capacity = Column(INTEGER(unsigned=True), nullable=False)
 
-    def __repr__(self):
-        return f"{self.hull}, armor='{self.armor}', type='{self.type}, capacity='{self.capacity}'"
+    def __repr__(self) -> str:
+        return f"{self.hull}, armor='{self.armor}', type='{self.type}," \
+               f" capacity='{self.capacity}'"
