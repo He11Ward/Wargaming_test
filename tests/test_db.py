@@ -65,13 +65,11 @@ def temp_db():
 """@mark.xfail"""
 
 
-@mark.parametrize("row_name, column, column_model, column_name",
-                  [("Ship-{}".format(i), "weapon", Weapons, Weapons.weapon) for
-                   i in range(1, 201)] +
-                  [("Ship-{}".format(i), "hull", Hulls, Hulls.hull) for i in
-                   range(1, 201)] +
-                  [("Ship-{}".format(i), "engine", Engines, Engines.engine) for
-                   i in range(1, 201)])
+@mark.parametrize("row_name", ["Ship-{}".format(i) for i in range(1, 201)])
+@mark.parametrize("column, column_model, column_name",
+                  [("weapon", Weapons, Weapons.weapon),
+                   ("hull", Hulls, Hulls.hull),
+                   ("engine", Engines, Engines.engine)])
 def test_ships_table(temp_db: Union[Session, Session],
                      row_name: str,
                      column: str,
@@ -87,8 +85,8 @@ def test_ships_table(temp_db: Union[Session, Session],
     column_data_dst = session_dst.query(column_model).where(
         column_name == ship_data_src.__getattribute__(column)).first()
     assert (
-            ship_data_src == ship_data_dst), \
+            ship_data_src.to_dict() == ship_data_dst.to_dict()), \
         f"{ship_data_src} expected, \n {ship_data_dst} found"
     assert (
-            column_data_src == column_data_dst), \
+            column_data_src.to_dict() == column_data_dst.to_dict()), \
         f"{column_data_src} expected, \n {column_data_dst} found"
